@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafinder - Şehri Yeniden Keşfet</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: {
+                            dark: '#1F1513', // Ultra premium dark
+                            base: '#4E342E',
+                            light: '#8D6E63',
+                            cream: '#FDFBF7',
+                        },
+                        gold: {
+                            main: '#C5A059', // Lüks altın
+                            light: '#E6C88B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scroll & Custom Scrollbar */
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff; }
+        ::-webkit-scrollbar-thumb { background: #4E342E; border-radius: 4px; }
+        
+        /* Animations */
+        .fade-in { animation: fadeIn 1s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+
+        /* Mockup Frame */
+        .phone-frame {
+            border: 10px solid #222;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            background: #000;
+        }
+        .screen-img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body class="bg-coffee-cream text-gray-800 font-sans">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3 cursor-pointer">
+                    <div class="w-10 h-10 bg-coffee-base rounded-xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <span class="font-bold text-2xl text-coffee-dark tracking-tight">Cafinder</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#discover" class="text-sm font-semibold text-gray-600 hover:text-coffee-base transition">Keşfet</a>
+                    <a href="#details" class="text-sm font-semibold text-gray-600 hover:text-coffee-base transition">Detaylar</a>
+                    <a href="#features" class="text-sm font-semibold text-gray-600 hover:text-coffee-base transition">Özellikler</a>
+                    <a href="#download" class="bg-coffee-base text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-coffee-dark transition shadow-lg transform hover:-translate-y-0.5">
+                        Uygulamayı İndir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="discover" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gold-light/20 rounded-full blur-[100px] -mr-40 -mt-40"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-coffee-light/10 rounded-full blur-[100px] -ml-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                <div class="lg:col-span-6 fade-in text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold mb-6 border border-orange-200">
+                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                        SAKARYA'NIN EN GÜÇLÜ ALGORİTMASI
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-bold text-coffee-dark leading-[1.1] mb-6">
+                        Şehri <span class="text-transparent bg-clip-text bg-gradient-to-r from-coffee-base to-gold-main">Ezbere Değil,</span><br>Bilerek Yaşa.
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Sadece kafe bulma. Gitmeden menüsünü gör, videosunu izle, özelliklerini filtrele. Beğendiklerini listele, kararsız kalırsan çarkı çevir ve her ziyaretinde ödül kazan.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="flex items-center justify-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl hover:bg-black transition shadow-xl">
+                            <i class="fa-brands fa-apple text-3xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs opacity-60">App Store</div>
+                                <div class="font-bold text-lg leading-none">İndir</div>
+                            </div>
+                        </button>
+                        <button class="flex items-center justify-center gap-3 bg-white text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl hover:bg-gray-50 transition shadow-xl">
+                            <i class="fa-brands fa-google-play text-3xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs opacity-60">Google Play</div>
+                                <div class="font-bold text-lg leading-none">Keşfet</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 mt-16 lg:mt-0 relative flex justify-center">
+                    <div class="phone-frame w-[300px] h-[600px] floating relative z-10 bg-gray-100">
+                        <img src="kafe1.jpg" alt="Cafinder Keşfet Ekranı" class="screen-img">
+                        
+                        <div class="absolute top-20 -left-10 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-[bounce_3s_infinite]">
+                            <div class="bg-blue-100 p-2.5 rounded-full text-blue-600"><i class="fa-solid fa-wifi"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold">Özellik</p>
+                                <p class="text-sm font-bold text-coffee-dark">Süper Hızlı Wi-Fi</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute bottom-32 -right-8 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-[bounce_4s_infinite]">
+                            <div class="bg-green-100 p-2.5 rounded-full text-green-600"><i class="fa-solid fa-utensils"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold">Menü</p>
+                                <p class="text-sm font-bold text-coffee-dark">Fiyatları Gör</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="details" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-coffee-light/20 to-gold-main/20 rounded-[3rem] transform -rotate-3"></div>
+                    <div class="bg-coffee-dark rounded-[3rem] p-8 relative overflow-hidden shadow-2xl transform rotate-0 hover:rotate-1 transition duration-500">
+                        <div class="relative rounded-2xl overflow-hidden aspect-video bg-gray-800 group cursor-pointer">
+                            <img src="https://via.placeholder.com/600x400/333/FFF?text=Mekan+Video+Onizleme" alt="Video" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-play text-white text-2xl pl-1"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4">
+                                <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">CANLI ORTAM</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex gap-4 overflow-x-auto pb-2">
+                            <div class="bg-white/10 p-4 rounded-xl min-w-[120px]">
+                                <p class="text-gold-main text-xs font-bold">Latte</p>
+                                <p class="text-white font-bold">85 ₺</p>
+                            </div>
+                            <div class="bg-white/10 p-4 rounded-xl min-w-[120px]">
+                                <p class="text-gold-main text-xs font-bold">Cheesecake</p>
+                                <p class="text-white font-bold">120 ₺</p>
+                            </div>
+                            <div class="bg-white/10 p-4 rounded-xl min-w-[120px]">
+                                <p class="text-gold-main text-xs font-bold">Filtre</p>
+                                <p class="text-white font-bold">70 ₺</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <div class="w-12 h-12 bg-coffee-cream rounded-xl flex items-center justify-center text-coffee-base text-2xl mb-6">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold text-coffee-dark mb-6">Sürprizlere Yer Yok.<br>Gitmeden Her Şeyi Gör.</h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Kafeye gidip "Burada priz yokmuş" veya "Menü çok pahalıymış" deme devri bitti. Cafinder ile mekanın videosunu izle, dijital menüsünü incele, olanaklarını kontrol et.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4">
+                            <i class="fa-solid fa-circle-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">Mekan Tanıtım Videoları & Galeri</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fa-solid fa-circle-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">Güncel Dijital Menü & Fiyatlar</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fa-solid fa-circle-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">Detaylı Özellikler (Wi-Fi, Priz, Teras, Sessiz Alan)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-coffee-cream relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-coffee-dark mb-4">Sana Özel <span class="text-gold-main">Dijital Asistan</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Güçlü algoritmamız ve kişiselleştirilmiş listelerimizle tam aradığın deneyimi sunuyoruz.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-pink-50 text-pink-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-coffee-dark mb-3">Özel Gün Kategorileri</h3>
+                    <p class="text-gray-500 text-sm">Sevgililer günü, doğum günü veya sessiz bir ders çalışma günü. Moduna uygun en iyi mekanlar hazır listelerde.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-coffee-dark mb-3">Favorile & Listele</h3>
+                    <p class="text-gray-500 text-sm">Beğendiğin kafeleri favorilerine ekle, "Gidilecekler" listeni oluştur. Arkadaşlarına mekan kartı gönder.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-yellow-50 text-yellow-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-coffee-dark mb-3">Gerçek Yorumlar</h3>
+                    <p class="text-gray-500 text-sm">Bot hesaplara yer yok. Sadece gerçek öğrencilerin ve kullanıcıların deneyimlerini, fotoğraflı yorumlarını gör.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-coffee-dark text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                
+                <div class="bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-white/10 transition duration-500 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold-main/20 blur-[50px] rounded-full"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center text-2xl shadow-lg">
+                                <i class="fa-solid fa-dice"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Kararsızlar Kulübü</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">
+                            "Nereye gitsek?" diye düşünme. Telefonunu salla veya çarkı çevir, şansına en uygun mekanı biz seçelim.
+                        </p>
+                        <div class="flex gap-4">
+                            <span class="bg-white/10 px-3 py-1 rounded-lg text-sm"><i class="fa-solid fa-mobile-screen-button mr-2"></i>Salla Bul</span>
+                            <span class="bg-white/10 px-3 py-1 rounded-lg text-sm"><i class="fa-solid fa-dharmachakra mr-2"></i>Çarkı Çevir</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-question absolute -bottom-4 -right-4 text-[10rem] text-white/5 group-hover:rotate-12 transition duration-700"></i>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-white/10 transition duration-500 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-coffee-base/50 blur-[50px] rounded-full"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-gold-main to-orange-500 rounded-xl flex items-center justify-center text-2xl shadow-lg">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Sadakat Cüzdanı</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">
+                            Karton kartları çöpe at. Gittiğin kafelerde QR kodunu okut, dijital bardaklarını biriktir, bedava kahveni kap.
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-coffee-dark"><i class="fa-solid fa-mug-hot text-coffee-base text-xs"></i></div>
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-coffee-dark"><i class="fa-solid fa-mug-hot text-coffee-base text-xs"></i></div>
+                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-coffee-dark"><i class="fa-solid fa-mug-hot text-coffee-base text-xs"></i></div>
+                            </div>
+                            <span class="text-gold-main font-bold text-sm ml-2">+ Ödül Senin!</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-qrcode absolute -bottom-4 -right-4 text-[10rem] text-white/5 group-hover:scale-110 transition duration-700"></i>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white pt-20 pb-10 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+                        <i class="fa-solid fa-mug-hot text-coffee-base text-2xl"></i>
+                        <span class="font-bold text-xl text-coffee-dark">Cafinder</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">Şehrin ritmini yakala, ödülleri kap.</p>
+                </div>
+
+                <div class="flex gap-8 text-sm font-medium text-gray-600">
+                    <a href="#" class="hover:text-coffee-base transition">Hakkımızda</a>
+                    <a href="#" class="hover:text-coffee-base transition">İşletme Girişi</a>
+                    <a href="#" class="hover:text-coffee-base transition">Gizlilik</a>
+                    <a href="#" class="hover:text-coffee-base transition">İletişim</a>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-coffee-base hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-coffee-base hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-100 mt-10 pt-6 text-center text-xs text-gray-400">
+                &copy; 2024 Cafinder. Eren Kaptan tarafından gururla geliştirildi.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
