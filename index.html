@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafinder - Şehri Yeniden Keşfet</title>
+    <title>Cafinder - Şehrinin Tüm Kafeleri</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -15,19 +14,30 @@
             theme: {
                 extend: {
                     colors: {
-                        coffee: {
-                            dark: '#1F1513', // Ultra premium dark
-                            base: '#4E342E',
-                            light: '#8D6E63',
-                            cream: '#FDFBF7',
-                        },
-                        gold: {
-                            main: '#C5A059', // Lüks altın
-                            light: '#E6C88B',
+                        brand: {
+                            dark: '#231512',   /* Ultra Dark Coffee */
+                            brown: '#4E342E',  /* Base Coffee */
+                            light: '#8D6E63',  /* Milk Coffee */
+                            gold: '#C5A059',   /* Premium Gold */
+                            cream: '#F9F7F2',  /* Soft Background */
                         }
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-up': 'fadeUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -35,107 +45,94 @@
     </script>
 
     <style>
-        /* Smooth Scroll & Custom Scrollbar */
         html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fff; }
-        ::-webkit-scrollbar-thumb { background: #4E342E; border-radius: 4px; }
-        
-        /* Animations */
-        .fade-in { animation: fadeIn 1s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .floating { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-
-        /* Mockup Frame */
-        .phone-frame {
-            border: 10px solid #222;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .phone-mockup {
+            border: 12px solid #1a1a1a;
             border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             background: #000;
         }
-        .screen-img { width: 100%; height: 100%; object-fit: cover; }
+        /* İkonların üzerine gelince efekt */
+        .feature-icon:hover { transform: translateY(-5px); color: #C5A059; }
     </style>
 </head>
-<body class="bg-coffee-cream text-gray-800 font-sans">
+<body class="bg-brand-cream text-gray-800 font-sans selection:bg-brand-gold selection:text-white">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100 transition-all">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3 cursor-pointer">
-                    <div class="w-10 h-10 bg-coffee-base rounded-xl flex items-center justify-center text-white text-xl">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-brand-brown rounded-xl flex items-center justify-center text-white text-xl shadow-lg">
                         <i class="fa-solid fa-mug-hot"></i>
                     </div>
-                    <span class="font-bold text-2xl text-coffee-dark tracking-tight">Cafinder</span>
+                    <span class="font-bold text-2xl text-brand-dark tracking-tight">Cafinder</span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#discover" class="text-sm font-semibold text-gray-600 hover:text-coffee-base transition">Keşfet</a>
-                    <a href="#details" class="text-sm font-semibold text-gray-600 hover:text-coffee-base transition">Detaylar</a>
-                    <a href="#features" class="text-sm font-semibold text-gray-600 hover:text-coffee-base transition">Özellikler</a>
-                    <a href="#download" class="bg-coffee-base text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-coffee-dark transition shadow-lg transform hover:-translate-y-0.5">
-                        Uygulamayı İndir
+                    <a href="#features" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition">Özellikler</a>
+                    <a href="#club" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition">Kulüp</a>
+                    <a href="#loyalty" class="text-sm font-semibold text-gray-600 hover:text-brand-gold transition">Sadakat</a>
+                    
+                    <a href="#business" class="group relative px-6 py-2 rounded-full bg-brand-dark text-white text-sm font-bold overflow-hidden shadow-lg hover:shadow-brand-gold/50 transition-all duration-300">
+                        <span class="relative z-10 group-hover:text-brand-gold transition-colors">İşletme Girişi</span>
+                        <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-gray-800 to-black group-hover:scale-105 transition-transform"></div>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <header id="discover" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gold-light/20 rounded-full blur-[100px] -mr-40 -mt-40"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-coffee-light/10 rounded-full blur-[100px] -ml-20"></div>
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[120px] -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-brown/5 rounded-full blur-[100px] -ml-20"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
-                <div class="lg:col-span-6 fade-in text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold mb-6 border border-orange-200">
-                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                        SAKARYA'NIN EN GÜÇLÜ ALGORİTMASI
-                    </div>
-                    <h1 class="text-5xl lg:text-7xl font-bold text-coffee-dark leading-[1.1] mb-6">
-                        Şehri <span class="text-transparent bg-clip-text bg-gradient-to-r from-coffee-base to-gold-main">Ezbere Değil,</span><br>Bilerek Yaşa.
+                
+                <div class="lg:col-span-6 text-center lg:text-left animate-fade-up">
+                    <h1 class="text-5xl lg:text-7xl font-bold text-brand-dark leading-[1.1] mb-6">
+                        Şehrinin Tüm Kafeleri <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-brown to-brand-gold">Tek Uygulamada.</span>
                     </h1>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                        Sadece kafe bulma. Gitmeden menüsünü gör, videosunu izle, özelliklerini filtrele. Beğendiklerini listele, kararsız kalırsan çarkı çevir ve her ziyaretinde ödül kazan.
+                        Aradığın kafe parmaklarının ucunda. İster ders çalışacak sessiz bir köşe, ister arkadaşlarınla eğleneceğin bir teras. Cafinder ile gitmeden keşfet, sürpriz yaşama.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button class="flex items-center justify-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl hover:bg-black transition shadow-xl">
+                        <button class="flex items-center justify-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-2xl hover:bg-black transition shadow-xl transform hover:-translate-y-1">
                             <i class="fa-brands fa-apple text-3xl"></i>
                             <div class="text-left">
-                                <div class="text-xs opacity-60">App Store</div>
+                                <div class="text-xs opacity-70">App Store</div>
                                 <div class="font-bold text-lg leading-none">İndir</div>
                             </div>
                         </button>
-                        <button class="flex items-center justify-center gap-3 bg-white text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl hover:bg-gray-50 transition shadow-xl">
+                        <button class="flex items-center justify-center gap-3 bg-white text-brand-dark border border-gray-200 px-8 py-4 rounded-2xl hover:bg-gray-50 transition shadow-xl transform hover:-translate-y-1">
                             <i class="fa-brands fa-google-play text-3xl"></i>
                             <div class="text-left">
-                                <div class="text-xs opacity-60">Google Play</div>
+                                <div class="text-xs opacity-70">Google Play</div>
                                 <div class="font-bold text-lg leading-none">Keşfet</div>
                             </div>
                         </button>
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 mt-16 lg:mt-0 relative flex justify-center">
-                    <div class="phone-frame w-[300px] h-[600px] floating relative z-10 bg-gray-100">
-                        <img src="kafe1.jpg" alt="Cafinder Keşfet Ekranı" class="screen-img">
+                <div class="lg:col-span-6 mt-16 lg:mt-0 flex justify-center relative">
+                    <div class="phone-mockup w-[320px] h-[640px] animate-float relative z-10">
+                        <img src="cup.jpg" alt="Cafinder Ana Ekran" class="w-full h-full object-cover">
                         
-                        <div class="absolute top-20 -left-10 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-[bounce_3s_infinite]">
-                            <div class="bg-blue-100 p-2.5 rounded-full text-blue-600"><i class="fa-solid fa-wifi"></i></div>
-                            <div>
-                                <p class="text-xs text-gray-500 font-bold">Özellik</p>
-                                <p class="text-sm font-bold text-coffee-dark">Süper Hızlı Wi-Fi</p>
+                        <div class="absolute bottom-24 -right-12 glass-card p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-[pulse_4s_infinite]">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-500">
+                                <i class="fa-solid fa-heart"></i>
                             </div>
-                        </div>
-                        
-                        <div class="absolute bottom-32 -right-8 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-[bounce_4s_infinite]">
-                            <div class="bg-green-100 p-2.5 rounded-full text-green-600"><i class="fa-solid fa-utensils"></i></div>
                             <div>
-                                <p class="text-xs text-gray-500 font-bold">Menü</p>
-                                <p class="text-sm font-bold text-coffee-dark">Fiyatları Gör</p>
+                                <p class="text-xs text-gray-500 font-bold">Keşfet</p>
+                                <p class="text-sm font-bold text-brand-dark">Sağa Kaydır, Favorile!</p>
                             </div>
                         </div>
                     </div>
@@ -144,61 +141,72 @@
         </div>
     </header>
 
-    <section id="details" class="py-24 bg-white">
+    <section id="features" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="relative order-2 lg:order-1">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-coffee-light/20 to-gold-main/20 rounded-[3rem] transform -rotate-3"></div>
-                    <div class="bg-coffee-dark rounded-[3rem] p-8 relative overflow-hidden shadow-2xl transform rotate-0 hover:rotate-1 transition duration-500">
-                        <div class="relative rounded-2xl overflow-hidden aspect-video bg-gray-800 group cursor-pointer">
-                            <img src="https://via.placeholder.com/600x400/333/FFF?text=Mekan+Video+Onizleme" alt="Video" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition">
-                                    <i class="fa-solid fa-play text-white text-2xl pl-1"></i>
-                                </div>
-                            </div>
-                            <div class="absolute bottom-4 left-4">
-                                <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">CANLI ORTAM</span>
-                            </div>
-                        </div>
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                
+                <div class="order-2 lg:order-1 relative">
+                    <div class="absolute inset-0 bg-brand-gold/5 rounded-[3rem] transform -rotate-3"></div>
+                    <div class="bg-brand-dark text-white p-10 rounded-[3rem] shadow-2xl relative transform rotate-0 hover:rotate-1 transition duration-500">
+                        <h3 class="text-2xl font-bold mb-8 text-center text-brand-gold">Mekan Özellikleri</h3>
                         
-                        <div class="mt-6 flex gap-4 overflow-x-auto pb-2">
-                            <div class="bg-white/10 p-4 rounded-xl min-w-[120px]">
-                                <p class="text-gold-main text-xs font-bold">Latte</p>
-                                <p class="text-white font-bold">85 ₺</p>
+                        <div class="grid grid-cols-3 gap-6">
+                            <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-brand-gold group-hover:text-brand-dark transition duration-300">
+                                    <i class="fa-solid fa-wifi"></i>
+                                </div>
+                                <span class="text-xs font-medium opacity-70">Hızlı Wi-Fi</span>
                             </div>
-                            <div class="bg-white/10 p-4 rounded-xl min-w-[120px]">
-                                <p class="text-gold-main text-xs font-bold">Cheesecake</p>
-                                <p class="text-white font-bold">120 ₺</p>
+                            <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-brand-gold group-hover:text-brand-dark transition duration-300">
+                                    <i class="fa-solid fa-plug"></i>
+                                </div>
+                                <span class="text-xs font-medium opacity-70">Bol Priz</span>
                             </div>
-                            <div class="bg-white/10 p-4 rounded-xl min-w-[120px]">
-                                <p class="text-gold-main text-xs font-bold">Filtre</p>
-                                <p class="text-white font-bold">70 ₺</p>
+                            <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-brand-gold group-hover:text-brand-dark transition duration-300">
+                                    <i class="fa-solid fa-paw"></i>
+                                </div>
+                                <span class="text-xs font-medium opacity-70">Hayvan Dostu</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-brand-gold group-hover:text-brand-dark transition duration-300">
+                                    <i class="fa-solid fa-sun"></i>
+                                </div>
+                                <span class="text-xs font-medium opacity-70">Açık Alan</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-brand-gold group-hover:text-brand-dark transition duration-300">
+                                    <i class="fa-solid fa-chess-board"></i>
+                                </div>
+                                <span class="text-xs font-medium opacity-70">Oyun/Okey</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 group cursor-pointer">
+                                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-brand-gold group-hover:text-brand-dark transition duration-300">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <span class="text-xs font-medium opacity-70">Otopark</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="order-1 lg:order-2">
-                    <div class="w-12 h-12 bg-coffee-cream rounded-xl flex items-center justify-center text-coffee-base text-2xl mb-6">
-                        <i class="fa-solid fa-eye"></i>
+                    <div class="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold mb-4">
+                        <i class="fa-solid fa-check-circle mr-1"></i> Detaylı Filtreleme
                     </div>
-                    <h2 class="text-4xl font-bold text-coffee-dark mb-6">Sürprizlere Yer Yok.<br>Gitmeden Her Şeyi Gör.</h2>
-                    <p class="text-gray-600 text-lg mb-8">
-                        Kafeye gidip "Burada priz yokmuş" veya "Menü çok pahalıymış" deme devri bitti. Cafinder ile mekanın videosunu izle, dijital menüsünü incele, olanaklarını kontrol et.
+                    <h2 class="text-4xl font-bold text-brand-dark mb-6">Körlemesine Gitme, <br>Mekanı Önceden Tanı.</h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        Kafeye gitmeden tüm özelliklerini gör, tanıtım videolarını izle ve dijital menüden fiyatlara bak. Konum atmana gerek yok, arkadaşına tek tuşla gönder. "Gidince bakarız" devri bitti, "Biliyorum da gidiyorum" devri başladı.
                     </p>
                     <ul class="space-y-4">
-                        <li class="flex items-center gap-4">
-                            <i class="fa-solid fa-circle-check text-green-500"></i>
-                            <span class="font-medium text-gray-700">Mekan Tanıtım Videoları & Galeri</span>
+                        <li class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-brand-cream transition">
+                            <i class="fa-solid fa-video text-brand-gold text-xl"></i>
+                            <span class="font-medium text-gray-700">Mekan Videoları ve Galeri</span>
                         </li>
-                        <li class="flex items-center gap-4">
-                            <i class="fa-solid fa-circle-check text-green-500"></i>
+                        <li class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-brand-cream transition">
+                            <i class="fa-solid fa-utensils text-brand-gold text-xl"></i>
                             <span class="font-medium text-gray-700">Güncel Dijital Menü & Fiyatlar</span>
-                        </li>
-                        <li class="flex items-center gap-4">
-                            <i class="fa-solid fa-circle-check text-green-500"></i>
-                            <span class="font-medium text-gray-700">Detaylı Özellikler (Wi-Fi, Priz, Teras, Sessiz Alan)</span>
                         </li>
                     </ul>
                 </div>
@@ -206,121 +214,156 @@
         </div>
     </section>
 
-    <section class="py-24 bg-coffee-cream relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+    <section id="club" class="py-24 bg-brand-cream relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-coffee-dark mb-4">Sana Özel <span class="text-gold-main">Dijital Asistan</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Güçlü algoritmamız ve kişiselleştirilmiş listelerimizle tam aradığın deneyimi sunuyoruz.</p>
+                <h2 class="text-4xl font-bold text-brand-dark mb-4">Kararsızlar Kulübü'ne <span class="text-brand-gold">Hoş Geldin</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Arkadaşlarınla saatlerce "Nereye gitsek?" diye tartışmaktan sıkıldın mı? Çözüm cebinde.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
-                    <div class="w-14 h-14 bg-pink-50 text-pink-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-heart"></i>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition duration-300 border border-transparent hover:border-brand-gold/30 group relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-50 rounded-full blur-2xl group-hover:bg-blue-100 transition"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-mobile-screen-button fa-shake"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-3">Salla ve Bul</h3>
+                        <p class="text-gray-600">Telefonunu salla, şansına o an sana en uygun mekanı getirelim. Karar verme yükünü bize bırak.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-coffee-dark mb-3">Özel Gün Kategorileri</h3>
-                    <p class="text-gray-500 text-sm">Sevgililer günü, doğum günü veya sessiz bir ders çalışma günü. Moduna uygun en iyi mekanlar hazır listelerde.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
-                    <div class="w-14 h-14 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-bookmark"></i>
+                <div class="bg-white p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition duration-300 border border-transparent hover:border-brand-gold/30 group relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-purple-50 rounded-full blur-2xl group-hover:bg-purple-100 transition"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:rotate-180 transition duration-700">
+                            <i class="fa-solid fa-dharmachakra"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-3">Şans Çarkı</h3>
+                        <p class="text-gray-600">Tatlı mı, Kahve mi? Kategorini seç, çarkı çevir, kaderine razı ol. Yeni yerler keşfetmenin en eğlenceli yolu.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-coffee-dark mb-3">Favorile & Listele</h3>
-                    <p class="text-gray-500 text-sm">Beğendiğin kafeleri favorilerine ekle, "Gidilecekler" listeni oluştur. Arkadaşlarına mekan kartı gönder.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition group">
-                    <div class="w-14 h-14 bg-yellow-50 text-yellow-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-coffee-dark mb-3">Gerçek Yorumlar</h3>
-                    <p class="text-gray-500 text-sm">Bot hesaplara yer yok. Sadece gerçek öğrencilerin ve kullanıcıların deneyimlerini, fotoğraflı yorumlarını gör.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 bg-coffee-dark text-white relative">
+    <section id="loyalty" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16">
-                
-                <div class="bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-white/10 transition duration-500 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold-main/20 blur-[50px] rounded-full"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center text-2xl shadow-lg">
-                                <i class="fa-solid fa-dice"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold">Kararsızlar Kulübü</h3>
+                <div class="group">
+                    <div class="w-full h-64 rounded-3xl overflow-hidden mb-8 relative shadow-xl">
+                        <div class="absolute inset-0 bg-brand-brown/80 group-hover:bg-brand-brown/70 transition flex items-center justify-center">
+                            <i class="fa-solid fa-qrcode text-6xl text-brand-gold opacity-80 group-hover:scale-110 transition duration-500"></i>
                         </div>
-                        <p class="text-gray-300 mb-6">
-                            "Nereye gitsek?" diye düşünme. Telefonunu salla veya çarkı çevir, şansına en uygun mekanı biz seçelim.
-                        </p>
-                        <div class="flex gap-4">
-                            <span class="bg-white/10 px-3 py-1 rounded-lg text-sm"><i class="fa-solid fa-mobile-screen-button mr-2"></i>Salla Bul</span>
-                            <span class="bg-white/10 px-3 py-1 rounded-lg text-sm"><i class="fa-solid fa-dharmachakra mr-2"></i>Çarkı Çevir</span>
-                        </div>
+                        <img src="cup.jpg" class="w-full h-full object-cover">
                     </div>
-                    <i class="fa-solid fa-question absolute -bottom-4 -right-4 text-[10rem] text-white/5 group-hover:rotate-12 transition duration-700"></i>
+                    <h3 class="text-3xl font-bold text-brand-dark mb-4">Cüzdanını Evde Unut, <br>Puanlarını Asla.</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Karton kart devri bitti. Gittiğin her kafede QR kodunu okut, dijital bardaklarını biriktir. Hedefe ulaşınca konfetiler patlasın, bedava kahven masana gelsin.
+                    </p>
                 </div>
 
-                <div class="bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-white/10 transition duration-500 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-coffee-base/50 blur-[50px] rounded-full"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-gold-main to-orange-500 rounded-xl flex items-center justify-center text-2xl shadow-lg">
-                                <i class="fa-solid fa-gift"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold">Sadakat Cüzdanı</h3>
+                <div class="group">
+                    <div class="w-full h-64 rounded-3xl overflow-hidden mb-8 relative shadow-xl">
+                        <div class="absolute inset-0 bg-brand-dark/80 group-hover:bg-brand-dark/70 transition flex items-center justify-center">
+                            <i class="fa-solid fa-star text-6xl text-yellow-400 opacity-80 group-hover:rotate-12 transition duration-500"></i>
                         </div>
-                        <p class="text-gray-300 mb-6">
-                            Karton kartları çöpe at. Gittiğin kafelerde QR kodunu okut, dijital bardaklarını biriktir, bedava kahveni kap.
-                        </p>
-                        <div class="flex items-center gap-2">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-coffee-dark"><i class="fa-solid fa-mug-hot text-coffee-base text-xs"></i></div>
-                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-coffee-dark"><i class="fa-solid fa-mug-hot text-coffee-base text-xs"></i></div>
-                                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-coffee-dark"><i class="fa-solid fa-mug-hot text-coffee-base text-xs"></i></div>
+                        <img src="cup.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-bold text-brand-dark mb-4">Gerçek Deneyimler, <br>Gerçek Yorumlar.</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Bot hesaplar yok. Sadece gerçek kullanıcıların fotoğraflı yorumları ve şeffaf puanlamaları var. Beğendiğin mekanları <span class="font-bold text-brand-brown">sağa kaydırarak</span> favorile, kendi listeni oluştur.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="business" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold opacity-10 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 block">İşletmeler İçin</span>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-8">Keşfetin Eşit Algoritmasıyla <br>Tüm Dünyaya Açıl.</h2>
+                    <p class="text-gray-300 text-lg mb-8">
+                        Cafinder'da "reklam veren" değil, "iyi olan" kazanır. Eşit algoritma sayesinde mekanınızı binlerce yeni müşteriye gösterin.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-brand-gold text-xl">
+                                <i class="fa-solid fa-chart-line"></i>
                             </div>
-                            <span class="text-gold-main font-bold text-sm ml-2">+ Ödül Senin!</span>
+                            <div>
+                                <h4 class="font-bold">Detaylı İstatistikler</h4>
+                                <p class="text-sm text-gray-400">Profilinizi kim gezdi, kim favoriledi anlık görün.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-brand-gold text-xl">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Kampanya Yönetimi</h4>
+                                <p class="text-sm text-gray-400">Anlık indirimler ve sadakat kampanyaları oluşturun.</p>
+                            </div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-qrcode absolute -bottom-4 -right-4 text-[10rem] text-white/5 group-hover:scale-110 transition duration-700"></i>
+
+                    <a href="#" class="inline-block mt-10 bg-brand-gold text-brand-dark px-10 py-4 rounded-xl font-bold hover:bg-white transition shadow-lg transform hover:-translate-y-1">
+                        İşletme Başvurusu Yap
+                    </a>
                 </div>
 
+                <div class="relative">
+                    <div class="absolute inset-0 bg-brand-gold rounded-[2rem] transform rotate-3 opacity-20"></div>
+                    <div class="relative bg-gray-900 rounded-[2rem] p-4 border border-white/10 shadow-2xl">
+                         <img src="cup.jpg" alt="İşletme Paneli" class="w-full h-auto rounded-xl opacity-80">
+                        
+                        <div class="absolute -bottom-6 -left-6 bg-white text-gray-900 p-4 rounded-xl shadow-xl flex items-center gap-3">
+                            <div class="bg-green-100 p-2 rounded-lg text-green-600 font-bold text-xl">+%45</div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold">Ziyaretçi</p>
+                                <p class="font-bold">Bu Ay Artış</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-white pt-20 pb-10 border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+                
+                <div>
                     <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
-                        <i class="fa-solid fa-mug-hot text-coffee-base text-2xl"></i>
-                        <span class="font-bold text-xl text-coffee-dark">Cafinder</span>
+                        <i class="fa-solid fa-mug-hot text-brand-brown text-2xl"></i>
+                        <span class="font-bold text-xl text-brand-dark">Cafinder</span>
                     </div>
-                    <p class="text-gray-500 text-sm">Şehrin ritmini yakala, ödülleri kap.</p>
+                    <p class="text-gray-500 text-sm">Şehri yeniden keşfet.</p>
                 </div>
 
                 <div class="flex gap-8 text-sm font-medium text-gray-600">
-                    <a href="#" class="hover:text-coffee-base transition">Hakkımızda</a>
-                    <a href="#" class="hover:text-coffee-base transition">İşletme Girişi</a>
-                    <a href="#" class="hover:text-coffee-base transition">Gizlilik</a>
-                    <a href="#" class="hover:text-coffee-base transition">İletişim</a>
+                    <a href="#" class="hover:text-brand-gold transition">Hakkımızda</a>
+                    <a href="#business" class="hover:text-brand-gold transition">İşletme</a>
+                    <a href="#" class="hover:text-brand-gold transition">Gizlilik</a>
+                    <a href="mailto:iletisim@cafinder.com" class="hover:text-brand-gold transition">İletişim</a>
                 </div>
 
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-coffee-base hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-coffee-base hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-brand-brown hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-brand-brown hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
                 </div>
             </div>
             
             <div class="border-t border-gray-100 mt-10 pt-6 text-center text-xs text-gray-400">
-                &copy; 2024 Cafinder. Eren Kaptan tarafından gururla geliştirildi.
+                &copy; 2025 Cafinder. Eren Kaptan tarafından gururla tasarlandı.
             </div>
         </div>
     </footer>
